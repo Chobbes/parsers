@@ -123,11 +123,11 @@ buildExpressionParser operators simpleExpr
               ambiguousLeft     = ambiguous "left" lassocOp
               ambiguousNon      = ambiguous "non" nassocOp
 
-              termP      = (prefixP <*> term) <**> postfixP
+              termP      = (prefixP <*> term) <**> postfixP <?> "term"
 
-              postfixP   = postfixOp <|> pure id
+              postfixP   = postfixOp <|> pure id <?> "postfix operator"
 
-              prefixP    = prefixOp <|> pure id
+              prefixP    = prefixOp <|> pure id <?> "prefix operator"
 
               rassocP, rassocP1, lassocP, lassocP1, nassocP :: m (a -> a)
 
